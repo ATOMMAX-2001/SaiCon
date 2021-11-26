@@ -12,18 +12,15 @@ app.get('/',(req,res) =>{
 });
 
 let count =0;
-//credit: vishwa (my friend) who gave all these words to me
+//credits:censor words given by Vishwa;
 let censorWords=[
-        'otha',
+	'otha',
 	'watha',
 	'fuck',
 	'bitch',
 	'ass-hole',
 	'asshole',
 	'bastard',
-	'tha',
-	'maala',
-	'wamala',
 	'omala',
 	'soothu',
 	'mayiru',
@@ -48,7 +45,7 @@ io.on("connection",(socket) =>{
 			{
 				tempMessage=temp[i];
 				for(let j=0;j<censorWords.length;j++)
-				{	 if(tempMessage=="thanks"){continue;}
+				{
 					 if(tempMessage!=temp[i].replace(censorWords[j],'*****')){
 					 	tempMessage=temp[i].replace(censorWords[j],'*****');
 					 	break;
@@ -60,8 +57,8 @@ io.on("connection",(socket) =>{
 	});
 	socket.on("disconnect",() => {
 		count--;
-		socket.on('user-count',(count)=>{
-		io.emit('user-count',count);
+		socket.on('user-counts',()=>{
+		io.emit('user-counts',count);
 		});
 	});
 
