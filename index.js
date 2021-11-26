@@ -13,9 +13,25 @@ app.get('/',(req,res) =>{
 
 let count =0;
 let censorWords=[
-	'idiot',
-	'fool',
-	'stupid'
+        'otha',
+	'watha',
+	'fuck',
+	'bitch',
+	'ass-hole',
+	'asshole',
+	'bastard',
+	'tha',
+	'maala',
+	'wamala',
+	'omala',
+	'soothu',
+	'mayiru',
+	'koothi',
+	'punda',
+	'kundi',
+	'oombu',
+	'dick',
+	'pool'
 ];
 
 io.on("connection",(socket) =>{
