@@ -4,12 +4,99 @@
     <title>SaiCon</title>
 </head>
 <style type="text/css">
+  @media screen and (min-width: 400px)
+    {
+      body{
+        background-color: black;
+      }
+      .title{
+        font-size:80px;
+        color: white;
+        font-family: monospace;
+        font-weight: bold;
+        text-indent: 10px;
+      }
+      .user-field{
+      float:right;
+    }
+    .online-name,.online-value{
+      color:green;font-size:50px;
+      position: absolute;
+    }
+    .online-value{
+      right: 3rem;
+      top:1%;
+    }
+    .online-name{
+      right:5rem;
+      top:1%;
+    }
+    form{
+         background: rgba(0, 0, 0, 0.15);
+          padding: 0.25rem; 
+          position: relative; 
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: flex;
+          height: 3rem;
+          box-sizing: border-box; 
+          backdrop-filter: blur(10px);
+    }
+    input{
+        border: none;
+        padding: 0 1rem;
+        flex-grow: 1; 
+        border-radius: 2rem;
+        margin: 0.25rem; 
+        font-size: 40px;
+        height: 3rem;
+    }
+     button{
+        background: #333; 
+        border: none; 
+        font-size:40px;
+        padding: 0 1rem; 
+        margin: 0.25rem; 
+        border-radius: 3px; 
+        outline: none; color: #fff; 
+    }
+    li{
+        color:white;
+        padding: 5px 10px;
+        background-color: purple;
+        list-style-type:none;
+        border-radius: 20px;
+        width: auto;
+        height: auto;
+        min-height: 1%;
+        min-width: 10%;
+        max-width: 30%;
+        margin-bottom: 1%;
+        overflow-wrap:break-word;
+        font-size:35px;
+    }
+    .sticky {
+    position: sticky;
+    top: 0;
+   }
+   .sticky + form {
+    padding-top: 20px;
+   }
+      header{
+      display: flex;
+      height: 10rem;
+      background-color: aqua;
+    }
+    }
+    @media only screen and (min-width:1000px){
     .title{
         font-size: 50px;
         font-family: monospace;
         color: white;
         font-weight: bold;
     }
+
     body{
         background-color: black;
     }
@@ -20,11 +107,12 @@
         border-radius: 2rem;
         margin: 0.25rem; 
         font-size: 15px;
+        height: auto;
     }
     form{
          background: rgba(0, 0, 0, 0.15);
           padding: 0.25rem; 
-          position: fixed; 
+          position: relative; 
           bottom: 0;
           left: 0;
           right: 0;
@@ -54,25 +142,66 @@
         max-width: 30%;
         margin-bottom: 1%;
         overflow-wrap:break-word;
+        font-size:18px;
     }
+    header{
+      display: flex;
+      height: 6rem;
+      background-color: aqua;
+    }
+    .user-field{
+      float:right;
+    }
+    .online-name,.online-value{
+      color:green;font-size:30px;
+      position: absolute;
+    }
+    .online-value{
+      right: 3rem;
+      top:3%;
+    }
+    .online-name{
+      right:5rem;
+      top:3%;
+    }
+    .sticky {
+    position: sticky;
+    top: 0;
+  }
+  .sticky + form {
+    padding-top: 20px;
+  }
+  }
+  
 </style>
 <body>
-    <header>
-        <center><h1 class="title">SaiCon</h1></center>
-        <div>
-        <center><pre><h3 style="color:green;font-size:20px;">Users Online: <h3 id='userCount' style="color:green;font-size:20px;">0</h3></h3></pre></center>
+    <header id="saicon-head"style="background-color:black">
+        <h1 class="title">SaiCon</h1>
+        <div class="user-field">
+        <pre><h3 class="online-name" style="">Users:<h3 id='userCount' class="online-value">0</h3></h3></pre>
         </div>
     </header>
     <main>
-        <ul id="message"></ul>
-        <form id="form">
+        <ul id="message"></ul>  
+         <form id="form">
             <input id="input" type="text" name="user_message" placeholder="Type Something...">
             <button>Send</button>
-        </form>
+        </form>      
     </main>
+
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
+  window.onscroll = function() {stay_idiot()};
+  var header = document.getElementById("saicon-head");
+  var sticky = header.offsetTop;
+  function stay_idiot() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
   var socket = io();
   let form = document.getElementById('form');
   let input = document.getElementById('input');
@@ -86,6 +215,15 @@
   });
   socket.on('user-count',function(count){
     document.getElementById('userCount').textContent=count;
+  });
+  window.addEventListener('beforeunload', function (e) {
+    e.preventDefault();
+    e.returnValue = '';
+    socket.emit("user-counts");
+  });
+
+  socket.on('user-counts',function(totalCount){
+    document.getElementById('userCount').textContent=totalCount;
   });
 
   socket.on('students-message',function(msg,totalCount){
