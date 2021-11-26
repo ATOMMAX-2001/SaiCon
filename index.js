@@ -12,6 +12,7 @@ app.get('/',(req,res) =>{
 });
 
 let count =0;
+//credit: vishwa (my friend) who gave all these words to me
 let censorWords=[
         'otha',
 	'watha',
@@ -66,6 +67,6 @@ io.on("connection",(socket) =>{
 
 });
 
-server.listen(3000,()=> {
+server.listen(process.env.PORT || 3000,()=> {
     console.log("server started on port 3000");
 })
