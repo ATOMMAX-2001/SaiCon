@@ -48,7 +48,7 @@ io.on("connection",(socket) =>{
 			{
 				tempMessage=temp[i];
 				for(let j=0;j<censorWords.length;j++)
-				{
+				{	 if(tempMessage=="thanks"){continue;}
 					 if(tempMessage!=temp[i].replace(censorWords[j],'*****')){
 					 	tempMessage=temp[i].replace(censorWords[j],'*****');
 					 	break;
