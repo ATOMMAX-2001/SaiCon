@@ -4,10 +4,10 @@ const express = require('express');
 const http = require('http');
 const {Server} = require('socket.io');
 const path = require('path');
-const datastore = require('nedb');
+//const datastore = require('nedb');
 const body = require('body-parser');
 
-const userdb = new datastore('user.db');
+//const userdb = new datastore('user.db');
 //const usermessage = new datastore('message.db');
 
 const app = express();	
@@ -18,7 +18,7 @@ const io = new Server(server);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(body.urlencoded({extended:false}));
 app.use(body.json());
-userdb.loadDatabase();
+//userdb.loadDatabase();
 //usermessage.loadDatabase();	
 
 let count =0;
@@ -52,19 +52,16 @@ app.get('/',(req,res) =>{
 app.get('/room',(req,res) =>{
     res.sendFile(__dirname+'/index.html');    
 });
+
 let userName;
 app.post('/',(req,res)=>{
 	let sainame = req.body.username.trim();
 	userName = sainame;
-	userdb.find({name:userName},function(e,d){
-		if(d.length==1){
-			return res.redirect('/?user=notallowed');		
-		}else{
-			userdb.insert({name:sainame},function(e,d){
-				return res.redirect('/room?user='+sainame);
-			});
-		}
-	});
+	if(users.indexOf(userName)>-1){
+		return res.redirect('/?user=notallowed');		
+	}else{
+	          return res.redirect('/room?user='+userName);
+        }
 })
 
 let userid;
@@ -100,14 +97,9 @@ io.on("connection",(socket) =>{
 			io.emit('students-message',tempMessage,socket.id,userid);
 		}
 	});
-function remove_user(username)
-{
-	userdb.remove({name:username},{});
-}
-	socket.on("disconnect",() => {
+socket.on("disconnect",() => {
 		count--;
 		users.pop(socket.id);
-		remove_user(socket.id);
 		io.emit("user-leaving",count);
 		socket.emit('user-leaving');		
 	});
