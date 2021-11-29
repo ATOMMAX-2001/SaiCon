@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(body.urlencoded({extended:false}));
 app.use(body.json());
 userdb.loadDatabase();
-usermessage.loadDatabase();	
+//usermessage.loadDatabase();	
 
 let count =0;
 //credits:censor words given by Vishwa;
