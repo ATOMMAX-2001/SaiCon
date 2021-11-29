@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SaiCon</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style type="text/css">
+* {
+  	box-sizing: border-box;
+  }
+  body{
+  	background-color: black;
+  }
+  .title{
+  	color: white;
+  	font-size: 50px;
+  	font-family: monospace;
+  }
+  form{
+  	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+  	width: 500px;
+  	height: 400px;
+  }
+  input{
+  	  border: none;
+    padding: 0 1rem;
+    flex-grow: 1; 
+    border-radius: 2rem;
+    margin: 0.25rem; 
+    font-size: 15px;
+    height: 2rem;
+  }
+  button{
+  	 background: #333; 
+    border: none; 
+    padding: 0 1rem; 
+    margin: 1rem; 
+    border-radius: 3px;
+    height: 2rem; 
+    margin-left: -1%;
+    outline: none; color: #fff; 
+    font-size: 20px;
+  }
+</style>
+<body>
+	
+	<form action="" method="POST">
+		<center><h1 class="title">WELCOME TO SAICON!!!</h1></center>
+		<center><input type="text" name="username" placeholder="Your NickName" required><br>
+		<button>Go To Lobby</button></center>
+	</form>
+</body>
+<script type="text/javascript">
+	const urlParams = new URLSearchParams(window.location.search);
+	const myParam = urlParams.get('user');
+	if(myParam==='notallowed'){
+		alert('Username is taken!!');
+	}
+
+</script>
+</html>
