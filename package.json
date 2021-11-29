@@ -1,7 +1,7 @@
 {
-  "name": "saistrangers",
+  "name": "saicon",
   "version": "1.0.0",
-  "description": "Just A Confession Website for SaiRam Student",
+  "description": "Just A Chatting Website for SaiRam Student",
   "main": "index.js",
   "scripts": {
     "start":"node index.js"
