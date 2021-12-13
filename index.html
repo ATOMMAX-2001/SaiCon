@@ -66,16 +66,18 @@
   }
   li{
       color:white;
-      padding: 5px 10px;
+      padding: 2px 10px;
       background-color: purple;
       list-style-type:none;
       border-radius: 20px;
       width: 100%;
       max-width: 150%;
       height: auto;
-      margin-bottom: 1%;
+      margin-bottom: 3%;
       overflow-wrap:break-word;
-      font-size:35px;
+      font-size:25px;
+      margin-left: -5%;
+
   }
   .sticky {
   position: sticky;
@@ -86,12 +88,13 @@
  }
     header{
     display: flex;
-    height: 10rem;
+    height: 8rem;
     background-color: aqua;
   }
   .user-message-area{
   overflow-y: scroll;
 }
+
 .message-container{
   display: flex;
   justify-content: space-between;
@@ -227,7 +230,26 @@ header{
     </header>
     <main>
       <div class="user-message-area" id="user-message-area">
-        <ul id="message"></ul> 
+        <ul id="message">
+        	<li>
+        		<span>
+              <div class="message-container">
+                <p class="message-name">abilash</p>
+                <p class="message-name">12:00</p>
+              </div>
+              <p class="user-message">hello</p>
+            </span>
+        	</li>
+        	<li>
+        		<span>
+              <div class="message-container">
+                <p class="message-name">abilash</p>
+                <p class="message-name">12:00</p>
+              </div>
+              <p class="user-message">hello</p>
+            </span>
+        	</li>
+     </ul> 
        </div>   
 
        <div>
