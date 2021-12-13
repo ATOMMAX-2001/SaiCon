@@ -4,16 +4,8 @@
     <title>SaiCon</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"> </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KNCNGM1GY9"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-KNCNGM1GY9');
-    </script>
 </head>
 <style type="text/css">
    * {
@@ -21,11 +13,11 @@
   }
 @media screen and (min-width: 300px)
 {
-body{
-  background-color: black;
-}
+  body{
+      background-color: black;
+  }
     .title{
-      font-size:80px;
+      font-size:50px;
       color: white;
       font-family: monospace;
       font-weight: bold;
@@ -35,17 +27,10 @@ body{
     float:right;
   }
   .online-name,.online-value{
-    color:green;font-size:50px;
+    color:green;font-size:22px;
     position: absolute;
   }
-  .online-value{
-    left:39rem;
-    top:3%;
-  }
-  .online-name{
-    left: 25rem;
-    top:3%;
-  }
+
   form{
        background: rgba(0, 0, 0, 0.15);
         padding: 0.25rem; 
@@ -60,21 +45,22 @@ body{
         backdrop-filter: blur(10px);
   }
   input{
-      border: none;
-      padding: 0 1rem;
-      flex-grow: 1; 
-      border-radius: 2rem;
-      margin: 0.25rem; 
-      font-size: 40px;
-      height: 4rem;
+    border: none;
+    padding: 0 1rem;
+    border-radius: 2rem;
+    margin:0.25rem;
+    height:2rem;
+    width: 100%;
   }
+  
+  
    button{
       background: #333; 
       border: none; 
-      font-size:40px;
+      font-size:20px;
       padding: 0 1rem; 
-      margin: 0.25rem; 
-      height: 5rem;
+      margin: 0.15rem; 
+      height: 2.5rem;
       border-radius: 3px; 
       outline: none; color: #fff; 
   }
@@ -118,6 +104,14 @@ body{
 .message-name{
   font-size:16px;
   font-family: monospace;
+}
+.online-value{
+  left: 19rem;
+  top:6%;
+}
+.online-name{
+  left: 13rem;
+  top:6%;
 }
 }
 
@@ -174,7 +168,7 @@ li{
     height: auto;
    /* min-height: 1%;
     min-width: 10%;*/
-    max-width: 40%;
+    max-width: 30%;
     margin-bottom: 1%;
     overflow-wrap:break-word;
     font-size:18px;
@@ -183,6 +177,7 @@ header{
   display: flex;
   height: 6rem;
   background-color: aqua;
+  justify-content: space-between;
 }
 .user-field{
   float:right;
